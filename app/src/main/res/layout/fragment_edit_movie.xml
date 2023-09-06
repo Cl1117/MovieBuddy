@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -9,49 +10,31 @@
         android:id="@+id/editText_movie_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter Movie ID" />
+        android:hint="Movie ID" />
 
     <EditText
         android:id="@+id/editText_movie_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter Movie Title" />
+        android:hint="Title" />
 
     <EditText
         android:id="@+id/editText_movie_directors"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter Movie Directors" />
+        android:hint="Directors" />
 
     <EditText
         android:id="@+id/editText_movie_casts"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter Movie Casts" />
+        android:hint="Casts" />
 
     <EditText
         android:id="@+id/editText_movie_release_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter Movie Release Date" />
-
-    <Button
-        android:id="@+id/button_edit_movie"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Edit Movie" />
-
-    <Button
-        android:id="@+id/button_return_main_movie"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Return to Main Page" />
-
-    <Button
-        android:id="@+id/button_back_previous_movie"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Back to Previous Page" />
+        android:hint="Release Date" />
 
     <Button
         android:id="@+id/button_update_movie"
@@ -59,5 +42,24 @@
         android:layout_height="wrap_content"
         android:text="Update Movie" />
 
+    <!-- Instruction text -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Hold to delete record"
+        android:textAlignment="center"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp" />
 
+    <Button
+        android:id="@+id/button_return_main_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Return to Main Page" />
+
+    <Button
+        android:id="@+id/button_back_previous_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Back to Previous Page" />
 </LinearLayout>

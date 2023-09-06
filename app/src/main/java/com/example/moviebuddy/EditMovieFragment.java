@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 public class EditMovieFragment extends Fragment {
 
@@ -23,18 +24,33 @@ public class EditMovieFragment extends Fragment {
         castsEditText = view.findViewById(R.id.editText_movie_casts);
         releaseDateEditText = view.findViewById(R.id.editText_movie_release_date);
 
-        // Assume movieToEdit contains the movie data passed from ViewMoviesFragment
-        populateFields(movieToEdit);
+        // Check if arguments are not null and then fetch the selected movie
+        if (getArguments() != null) {
+            movieToEdit = (Movie) getArguments().getSerializable("selectedMovie");
+            populateFields(movieToEdit);
+        }
 
         Button updateButton = view.findViewById(R.id.button_update_movie);
         updateButton.setOnClickListener(v -> {
             updateMovieDetails(movieToEdit);
-            // Navigate back to ViewMoviesFragment or give a success message
+            // Refresh the movies list in ViewMoviesFragment
+            ViewMoviesFragment viewMoviesFragment = (ViewMoviesFragment) getParentFragmentManager().findFragmentByTag("ViewMoviesFragment");
+            if (viewMoviesFragment != null) {
+                viewMoviesFragment.refreshMovieList();
+            }
+            getParentFragmentManager().popBackStack();
         });
+
+        Button returnMainButton = view.findViewById(R.id.button_return_main_edit);
+        Button previousPageButton = view.findViewById(R.id.button_back_previous_edit);
+
+        returnMainButton.setOnClickListener(v -> getParentFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE));
+        previousPageButton.setOnClickListener(v -> getParentFragmentManager().popBackStack());
 
         return view;
     }
 
+    // Populate the fields with the movie details
     private void populateFields(Movie movie) {
         idEditText.setText(String.valueOf(movie.getId()));
         titleEditText.setText(movie.getTitle());
@@ -43,6 +59,7 @@ public class EditMovieFragment extends Fragment {
         releaseDateEditText.setText(movie.getReleaseDate());
     }
 
+    // Update the movie details with the values from the fields
     private void updateMovieDetails(Movie movie) {
         movie.setId(Integer.parseInt(idEditText.getText().toString()));
         movie.setTitle(titleEditText.getText().toString());
@@ -51,4 +68,3 @@ public class EditMovieFragment extends Fragment {
         movie.setReleaseDate(releaseDateEditText.getText().toString());
     }
 }
-
