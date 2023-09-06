@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import java.util.Calendar;
 
@@ -69,6 +70,19 @@ public class AddMovieFragment extends Fragment {
                 viewMoviesFragment.refreshMovieList();
             }
 
+            getParentFragmentManager().popBackStack();
+        });
+
+        Button returnMainButton = view.findViewById(R.id.button_return_main_from_add);
+        Button previousPageButton = view.findViewById(R.id.button_back_previous_from_add);
+
+        returnMainButton.setOnClickListener(v -> {
+            // Navigate to the main fragment or activity
+            getParentFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        });
+
+        previousPageButton.setOnClickListener(v -> {
+            // Navigate back to the previous fragment or activity
             getParentFragmentManager().popBackStack();
         });
 

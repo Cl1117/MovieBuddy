@@ -7,8 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 
 public class ViewMoviesFragment extends Fragment {
@@ -50,6 +52,19 @@ public class ViewMoviesFragment extends Fragment {
                 movieAdapter.notifyDataSetChanged();    // Refresh the ListView
                 return true;
             }
+        });
+
+        Button returnMainButton = view.findViewById(R.id.button_return_main_from_view);
+        Button previousPageButton = view.findViewById(R.id.button_back_previous_from_view);
+
+        returnMainButton.setOnClickListener(v -> {
+            // Navigate to the main fragment or activity
+            getParentFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        });
+
+        previousPageButton.setOnClickListener(v -> {
+            // Navigate back to the previous fragment or activity
+            getParentFragmentManager().popBackStack();
         });
 
         return view;

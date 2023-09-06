@@ -41,5 +41,17 @@
         android:layout_height="wrap_content"
         android:text="Add Movie" />
 
+    <Button
+        android:id="@+id/button_return_main_from_add"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Return to Main Page" />
+
+    <Button
+        android:id="@+id/button_back_previous_from_add"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Back to Previous Page" />
+
 </LinearLayout>
 

@@ -8,6 +8,30 @@
     <ListView
         android:id="@+id/listView_movies"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:divider="@android:color/darker_gray"
+        android:dividerHeight="0.5dp" />
+
+    <!-- Text to instruct the user -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Hold to delete movie record."
+        android:textAlignment="center"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp" />
+
+    <Button
+        android:id="@+id/button_return_main_from_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Return to Main Page" />
+
+    <Button
+        android:id="@+id/button_back_previous_from_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Back to Previous Page" />
 
 </LinearLayout>
