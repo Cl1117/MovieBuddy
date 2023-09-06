@@ -4,73 +4,54 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 public class EditMovieFragment extends Fragment {
 
-    private EditText movieIdInput, movieTitleInput, movieDirectorsInput, movieCastsInput, movieReleaseDateInput;
-    private Button updateButton, deleteButton;
-    private Movie selectedMovie;
+    private ListView moviesListView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_edit_movie, container, false);
+        View view = inflater.inflate(R.layout.fragment_edit_movie_list, container, false);
 
-        // Initialize fields
-        movieIdInput = view.findViewById(R.id.edit_movie_id);
-        movieTitleInput = view.findViewById(R.id.edit_movie_title);
-        movieDirectorsInput = view.findViewById(R.id.edit_movie_directors);
-        movieCastsInput = view.findViewById(R.id.edit_movie_casts);
-        movieReleaseDateInput = view.findViewById(R.id.edit_movie_release_date);
-        updateButton = view.findViewById(R.id.button_update_movie);
-        deleteButton = view.findViewById(R.id.button_delete_movie);
+        // Initialize ListView
+        moviesListView = view.findViewById(R.id.movies_list_view);
 
-        Bundle arguments = getArguments();
-        if(arguments != null) {
-            // Get the selected movie passed from previous fragment
-            selectedMovie = (Movie) arguments.getSerializable("selectedMovie");
-
-            // Populate the fields with selected movie details
-            movieIdInput.setText(String.valueOf(selectedMovie.getId()));
-            movieTitleInput.setText(selectedMovie.getTitle());
-            movieDirectorsInput.setText(selectedMovie.getDirectors());
-            movieCastsInput.setText(selectedMovie.getCasts());
-            movieReleaseDateInput.setText(selectedMovie.getReleaseDate());
+        // Create an array of movie titles from the movies list
+        String[] movieTitles = new String[DataStore.moviesList.size()];
+        for (int i = 0; i < DataStore.moviesList.size(); i++) {
+            movieTitles[i] = DataStore.moviesList.get(i).getTitle();
         }
 
-        // Set update button listener
-        updateButton.setOnClickListener(v -> {
-            if(selectedMovie != null) {
-                // Update the selected movie details
-                selectedMovie.setId(Integer.parseInt(movieIdInput.getText().toString()));
-                selectedMovie.setTitle(movieTitleInput.getText().toString());
-                selectedMovie.setDirectors(movieDirectorsInput.getText().toString());
-                selectedMovie.setCasts(movieCastsInput.getText().toString());
-                selectedMovie.setReleaseDate(movieReleaseDateInput.getText().toString());
+        // Set the adapter for the ListView
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, movieTitles);
+        moviesListView.setAdapter(adapter);
+
+        // Set item click listener for the ListView
+        moviesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Movie selectedMovie = DataStore.moviesList.get(position);
+
+                // Create a new fragment to edit the selected movie details and pass the selected movie to it
+                MovieDetailsEditFragment movieDetailsEditFragment = new MovieDetailsEditFragment();
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("selectedMovie", selectedMovie);
+                movieDetailsEditFragment.setArguments(bundle);
+
+                // Replace the current fragment with the new one
+                FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container, movieDetailsEditFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
             }
-
-            // Return to previous fragment
-            FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-            transaction.replace(R.id.fragment_container, new ViewMoviesFragment());
-            transaction.commit();
-        });
-
-        // Set delete button listener
-        deleteButton.setOnClickListener(v -> {
-            if(selectedMovie != null) {
-                // Remove the selected movie from the list
-                DataStore.moviesList.remove(selectedMovie);
-            }
-
-            // Return to previous fragment
-            FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-            transaction.replace(R.id.fragment_container, new ViewMoviesFragment());
-            transaction.commit();
         });
 
         return view;
     }
 }
+
