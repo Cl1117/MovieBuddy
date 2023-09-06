@@ -5,15 +5,30 @@
     android:orientation="vertical"
     android:padding="16dp">
 
+    <EditText
+        android:id="@+id/editText_movie_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Movie Title"
+        android:inputType="text" />
 
+    <EditText
+        android:id="@+id/editText_movie_director"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Director"
+        android:inputType="text"
+        android:layout_marginTop="10dp" />
+
+    <!-- Add other EditText fields for other movie details as needed -->
 
     <!-- Update Movie Button -->
     <Button
         android:id="@+id/button_update_movie"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Update Movie" />
-
-
+        android:text="Update Movie"
+        android:layout_marginTop="10dp" />
 
 </LinearLayout>
+
