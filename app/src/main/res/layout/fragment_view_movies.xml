@@ -17,6 +17,14 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="Tap a movie to edit record"
+        android:textAlignment="center"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:text="Hold to delete movie record."
         android:textAlignment="center"
         android:paddingTop="10dp"
