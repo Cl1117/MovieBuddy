@@ -5,41 +5,7 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <!-- Movie ID Input -->
-    <EditText
-        android:id="@+id/edit_movie_id"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Movie ID"
-        android:inputType="number" />
 
-    <!-- Movie Title Input -->
-    <EditText
-        android:id="@+id/edit_movie_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Movie Title" />
-
-    <!-- Movie Directors Input -->
-    <EditText
-        android:id="@+id/edit_movie_directors"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Movie Directors" />
-
-    <!-- Movie Casts Input -->
-    <EditText
-        android:id="@+id/edit_movie_casts"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Movie Casts" />
-
-    <!-- Movie Release Date Input -->
-    <EditText
-        android:id="@+id/edit_movie_release_date"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Release Date" />
 
     <!-- Update Movie Button -->
     <Button
@@ -48,11 +14,6 @@
         android:layout_height="wrap_content"
         android:text="Update Movie" />
 
-    <!-- Delete Movie Button -->
-    <Button
-        android:id="@+id/button_delete_movie"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Delete Movie" />
+
 
 </LinearLayout>

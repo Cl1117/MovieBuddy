@@ -14,21 +14,18 @@
         android:dividerHeight="1dp"
         android:listSelector="@android:color/darker_gray" />
 
-    <!-- Button to update a movie -->
     <Button
         android:id="@+id/btn_update_movie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Update movie" />
 
-    <!-- Button to delete a movie -->
     <Button
         android:id="@+id/btn_delete_movie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Delete movie" />
 
-    <!-- Button to navigate back to the previous page -->
     <Button
         android:id="@+id/btn_back_edit"
         android:layout_width="wrap_content"
