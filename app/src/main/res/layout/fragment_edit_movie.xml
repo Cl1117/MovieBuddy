@@ -1,65 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp">
 
+    <!-- Movie ID Input -->
     <EditText
-        android:id="@+id/editText_movie_id"
+        android:id="@+id/edit_movie_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Movie ID" />
+        android:hint="Movie ID"
+        android:inputType="number" />
 
+    <!-- Movie Title Input -->
     <EditText
-        android:id="@+id/editText_movie_title"
+        android:id="@+id/edit_movie_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Title" />
+        android:hint="Movie Title" />
 
+    <!-- Movie Directors Input -->
     <EditText
-        android:id="@+id/editText_movie_directors"
+        android:id="@+id/edit_movie_directors"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Directors" />
+        android:hint="Movie Directors" />
 
+    <!-- Movie Casts Input -->
     <EditText
-        android:id="@+id/editText_movie_casts"
+        android:id="@+id/edit_movie_casts"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Casts" />
+        android:hint="Movie Casts" />
 
+    <!-- Movie Release Date Input -->
     <EditText
-        android:id="@+id/editText_movie_release_date"
+        android:id="@+id/edit_movie_release_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Release Date" />
 
+    <!-- Update Movie Button -->
     <Button
         android:id="@+id/button_update_movie"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Update Movie" />
 
-    <!-- Instruction text -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Hold to delete record"
-        android:textAlignment="center"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp" />
-
+    <!-- Delete Movie Button -->
     <Button
-        android:id="@+id/button_return_main_edit"
+        android:id="@+id/button_delete_movie"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Return to Main Page" />
+        android:text="Delete Movie" />
 
-    <Button
-        android:id="@+id/button_back_previous_edit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Back to Previous Page" />
 </LinearLayout>

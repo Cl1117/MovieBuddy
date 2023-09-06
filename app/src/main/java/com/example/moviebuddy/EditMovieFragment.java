@@ -7,64 +7,70 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 public class EditMovieFragment extends Fragment {
 
-    private EditText idEditText, titleEditText, directorsEditText, castsEditText, releaseDateEditText;
-    private Movie movieToEdit;
+    private EditText movieIdInput, movieTitleInput, movieDirectorsInput, movieCastsInput, movieReleaseDateInput;
+    private Button updateButton, deleteButton;
+    private Movie selectedMovie;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_edit_movie, container, false);
 
-        idEditText = view.findViewById(R.id.editText_movie_id);
-        titleEditText = view.findViewById(R.id.editText_movie_title);
-        directorsEditText = view.findViewById(R.id.editText_movie_directors);
-        castsEditText = view.findViewById(R.id.editText_movie_casts);
-        releaseDateEditText = view.findViewById(R.id.editText_movie_release_date);
+        // Initialize fields
+        movieIdInput = view.findViewById(R.id.edit_movie_id);
+        movieTitleInput = view.findViewById(R.id.edit_movie_title);
+        movieDirectorsInput = view.findViewById(R.id.edit_movie_directors);
+        movieCastsInput = view.findViewById(R.id.edit_movie_casts);
+        movieReleaseDateInput = view.findViewById(R.id.edit_movie_release_date);
+        updateButton = view.findViewById(R.id.button_update_movie);
+        deleteButton = view.findViewById(R.id.button_delete_movie);
 
-        // Check if arguments are not null and then fetch the selected movie
-        if (getArguments() != null) {
-            movieToEdit = (Movie) getArguments().getSerializable("selectedMovie");
-            populateFields(movieToEdit);
+        Bundle arguments = getArguments();
+        if(arguments != null) {
+            // Get the selected movie passed from previous fragment
+            selectedMovie = (Movie) arguments.getSerializable("selectedMovie");
+
+            // Populate the fields with selected movie details
+            movieIdInput.setText(String.valueOf(selectedMovie.getId()));
+            movieTitleInput.setText(selectedMovie.getTitle());
+            movieDirectorsInput.setText(selectedMovie.getDirectors());
+            movieCastsInput.setText(selectedMovie.getCasts());
+            movieReleaseDateInput.setText(selectedMovie.getReleaseDate());
         }
 
-        Button updateButton = view.findViewById(R.id.button_update_movie);
+        // Set update button listener
         updateButton.setOnClickListener(v -> {
-            updateMovieDetails(movieToEdit);
-            // Refresh the movies list in ViewMoviesFragment
-            ViewMoviesFragment viewMoviesFragment = (ViewMoviesFragment) getParentFragmentManager().findFragmentByTag("ViewMoviesFragment");
-            if (viewMoviesFragment != null) {
-                viewMoviesFragment.refreshMovieList();
+            if(selectedMovie != null) {
+                // Update the selected movie details
+                selectedMovie.setId(Integer.parseInt(movieIdInput.getText().toString()));
+                selectedMovie.setTitle(movieTitleInput.getText().toString());
+                selectedMovie.setDirectors(movieDirectorsInput.getText().toString());
+                selectedMovie.setCasts(movieCastsInput.getText().toString());
+                selectedMovie.setReleaseDate(movieReleaseDateInput.getText().toString());
             }
-            getParentFragmentManager().popBackStack();
+
+            // Return to previous fragment
+            FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+            transaction.replace(R.id.fragment_container, new ViewMoviesFragment());
+            transaction.commit();
         });
 
-        Button returnMainButton = view.findViewById(R.id.button_return_main_edit);
-        Button previousPageButton = view.findViewById(R.id.button_back_previous_edit);
+        // Set delete button listener
+        deleteButton.setOnClickListener(v -> {
+            if(selectedMovie != null) {
+                // Remove the selected movie from the list
+                DataStore.moviesList.remove(selectedMovie);
+            }
 
-        returnMainButton.setOnClickListener(v -> getParentFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE));
-        previousPageButton.setOnClickListener(v -> getParentFragmentManager().popBackStack());
+            // Return to previous fragment
+            FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+            transaction.replace(R.id.fragment_container, new ViewMoviesFragment());
+            transaction.commit();
+        });
 
         return view;
-    }
-
-    // Populate the fields with the movie details
-    private void populateFields(Movie movie) {
-        idEditText.setText(String.valueOf(movie.getId()));
-        titleEditText.setText(movie.getTitle());
-        directorsEditText.setText(movie.getDirectors());
-        castsEditText.setText(movie.getCasts());
-        releaseDateEditText.setText(movie.getReleaseDate());
-    }
-
-    // Update the movie details with the values from the fields
-    private void updateMovieDetails(Movie movie) {
-        movie.setId(Integer.parseInt(idEditText.getText().toString()));
-        movie.setTitle(titleEditText.getText().toString());
-        movie.setDirectors(directorsEditText.getText().toString());
-        movie.setCasts(castsEditText.getText().toString());
-        movie.setReleaseDate(releaseDateEditText.getText().toString());
     }
 }
