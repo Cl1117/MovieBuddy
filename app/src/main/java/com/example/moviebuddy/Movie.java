@@ -1,18 +1,18 @@
 package com.example.moviebuddy;
 
 public class Movie {
-    private String id;
+    private int id;
     private String title;
     private String directors;
     private String casts;
     private String releaseDate;
 
     // Getters and setters
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -46,5 +46,10 @@ public class Movie {
 
     public void setReleaseDate(String releaseDate) {
         this.releaseDate = releaseDate;
+    }
+
+    @Override
+    public String toString() {
+        return title;  // This will display the title of the movie in the list
     }
 }

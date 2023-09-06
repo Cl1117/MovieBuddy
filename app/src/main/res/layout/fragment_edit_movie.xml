@@ -53,5 +53,11 @@
         android:layout_height="wrap_content"
         android:text="Back to Previous Page" />
 
+    <Button
+        android:id="@+id/button_update_movie"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Update Movie" />
+
 
 </LinearLayout>

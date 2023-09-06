@@ -1,25 +1,70 @@
 package com.example.moviebuddy;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import androidx.fragment.app.Fragment;
-import android.widget.ArrayAdapter;
+
 
 public class ViewMoviesFragment extends Fragment {
+
+    private ListView movieListView;
+    private ArrayAdapter<Movie> movieAdapter;
+
+    public void refreshMovieList() {
+        if (movieAdapter != null) {
+            movieAdapter.notifyDataSetChanged();
+        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_view_movies, container, false);
 
-        ListView movieListView = view.findViewById(R.id.listView_movies);
-        // For simplicity, we'll use an ArrayAdapter to populate the ListView
-        // In a real-world scenario, you'd probably use a custom adapter to display more details
-        ArrayAdapter<Movie> movieAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, DataStore.moviesList);
+        movieListView = view.findViewById(R.id.listView_movies);
+
+        // Populate the ListView with movie data
+        movieAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, DataStore.moviesList);
         movieListView.setAdapter(movieAdapter);
+
+        // Set an item click listener to edit the movie
+        movieListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Movie selectedMovie = DataStore.moviesList.get(position);
+                // Navigate to EditMovieFragment, passing the selected movie's data
+                // ... (fragment transaction code here)
+            }
+        });
+
+        // Set a long item click listener to delete the movie
+        movieListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                DataStore.moviesList.remove(position);  // Remove the movie from the data list
+                movieAdapter.notifyDataSetChanged();    // Refresh the ListView
+                return true;
+            }
+        });
 
         return view;
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        // Log for debugging
+        Log.d("ViewMoviesFragment", "Number of movies: " + DataStore.moviesList.size());
+
+        // Refresh the list view
+        if (movieAdapter != null) {
+            movieAdapter.notifyDataSetChanged();
+        }
+    }
+
 }

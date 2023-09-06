@@ -2,6 +2,7 @@ package com.example.moviebuddy;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,7 +51,7 @@ public class AddMovieFragment extends Fragment {
         Button addButton = view.findViewById(R.id.button_add_movie);
         addButton.setOnClickListener(v -> {
             Movie newMovie = new Movie();
-            newMovie.setId(idEditText.getText().toString());
+            newMovie.setId(Integer.parseInt(idEditText.getText().toString()));
             newMovie.setTitle(titleEditText.getText().toString());
             newMovie.setDirectors(directorsEditText.getText().toString());
             newMovie.setCasts(castsEditText.getText().toString());
@@ -58,6 +59,17 @@ public class AddMovieFragment extends Fragment {
 
             // Add the new movie to the data store
             DataStore.moviesList.add(newMovie);
+            Log.d("AddMovieFragment", "Movie added: " + newMovie.getTitle()); // Log for debugging
+
+            // Log to ensure the movie is added
+            Log.d("AddMovieFragment", "Movie added: " + newMovie.getTitle() + ". Total movies: " + DataStore.moviesList.size());
+
+            ViewMoviesFragment viewMoviesFragment = (ViewMoviesFragment) getParentFragmentManager().findFragmentByTag("ViewMoviesFragment");
+            if (viewMoviesFragment != null) {
+                viewMoviesFragment.refreshMovieList();
+            }
+
+            getParentFragmentManager().popBackStack();
         });
 
         return view;
