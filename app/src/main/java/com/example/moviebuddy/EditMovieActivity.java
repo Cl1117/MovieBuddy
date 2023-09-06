@@ -1,27 +1,33 @@
-package com.example.moviebuddy;
+package com.example.moviebuddy;  // Ensure you have the correct package name
 
 import android.os.Bundle;
-import androidx.annotation.Nullable;
+import android.view.View;
+import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
 public class EditMovieActivity extends AppCompatActivity {
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_movie);
+        setContentView(R.layout.activity_edit_movie);  // Ensure you're referencing the correct layout
 
-        // Check if the savedInstanceState is null, which means the activity is just being created
+        // Check if savedInstanceState is null, which means the activity is just being created
         if (savedInstanceState == null) {
-            // Begin a new fragment transaction
+            // Begin a FragmentTransaction to add the MovieListFragment
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-
-            // Add the MovieListFragment to the activity
             fragmentTransaction.add(R.id.fragment_container, new MovieListFragment());
-
-            // Commit the transaction
             fragmentTransaction.commit();
         }
+
+        // Setup the "Back to previous page" button
+        Button backButton = findViewById(R.id.btn_back_edit);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();  // This will close the current activity and return to the previous one
+            }
+        });
     }
 }

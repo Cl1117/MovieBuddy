@@ -2,33 +2,37 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/edit_movie_title"
+    <!-- List to display added movies -->
+    <ListView
+        android:id="@+id/lv_movies_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Title"
-        android:inputType="text" />
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:divider="@android:color/darker_gray"
+        android:dividerHeight="1dp"
+        android:listSelector="@android:color/darker_gray" />
 
-    <EditText
-        android:id="@+id/edit_movie_release_date"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Release Date"
-        android:inputType="date" />
-
+    <!-- Button to update a movie -->
     <Button
         android:id="@+id/btn_update_movie"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Update Movie" />
+        android:text="Update movie" />
 
+    <!-- Button to delete a movie -->
     <Button
         android:id="@+id/btn_delete_movie"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Delete Movie" />
+        android:text="Delete movie" />
+
+    <!-- Button to navigate back to the previous page -->
+    <Button
+        android:id="@+id/btn_back_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Back to previous page" />
 
 </LinearLayout>
