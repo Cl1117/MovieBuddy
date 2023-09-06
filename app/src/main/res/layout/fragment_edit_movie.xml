@@ -6,21 +6,43 @@
     android:padding="16dp">
 
     <EditText
+        android:id="@+id/editText_movie_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Movie ID"
+        android:inputType="number" />
+
+    <EditText
         android:id="@+id/editText_movie_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Movie Title"
-        android:inputType="text" />
-
-    <EditText
-        android:id="@+id/editText_movie_director"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Director"
         android:inputType="text"
         android:layout_marginTop="10dp" />
 
-    <!-- Add other EditText fields for other movie details as needed -->
+    <EditText
+        android:id="@+id/editText_movie_directors"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Directors"
+        android:inputType="text"
+        android:layout_marginTop="10dp" />
+
+    <EditText
+        android:id="@+id/editText_movie_casts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Casts"
+        android:inputType="text"
+        android:layout_marginTop="10dp" />
+
+    <EditText
+        android:id="@+id/editText_movie_release_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Release Date"
+        android:inputType="date"
+        android:layout_marginTop="10dp" />
 
     <!-- Update Movie Button -->
     <Button
@@ -31,4 +53,5 @@
         android:layout_marginTop="10dp" />
 
 </LinearLayout>
+
 
