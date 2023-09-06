@@ -17,11 +17,7 @@
         android:layout_height="wrap_content"
         android:text="View movie records" />
 
-    <Button
-        android:id="@+id/btn_edit_movie"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Edit a movie record" />
+
 
 </LinearLayout>
 

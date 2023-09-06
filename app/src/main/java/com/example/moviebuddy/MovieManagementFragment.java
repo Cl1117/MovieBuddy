@@ -32,14 +32,7 @@ public class MovieManagementFragment extends Fragment {
             transaction.commit();
         });
 
-        // Setup button to edit a movie record
-        Button editMovieButton = view.findViewById(R.id.btn_edit_movie);
-        editMovieButton.setOnClickListener(v -> {
-            FragmentTransaction transaction = getFragmentManager().beginTransaction();
-            transaction.replace(R.id.fragment_container, new EditMovieFragment());
-            transaction.addToBackStack(null);
-            transaction.commit();
-        });
+        // The button and its click listener for editing a movie record has been removed
 
         return view;
     }
