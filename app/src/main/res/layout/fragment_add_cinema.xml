@@ -1,32 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:padding="16dp">
 
-    <EditText
-        android:id="@+id/editText_cinema_id"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter Cinema ID" />
+        android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/editText_cinema_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter Cinema Name" />
+        <EditText
+            android:id="@+id/editText_cinema_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Cinema ID" />
 
-    <EditText
-        android:id="@+id/editText_cinema_location"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter Cinema Location" />
+        <EditText
+            android:id="@+id/editText_cinema_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Cinema Name" />
 
-    <Button
-        android:id="@+id/button_add_cinema"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Add Cinema" />
+        <EditText
+            android:id="@+id/editText_cinema_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Cinema Location" />
 
-</LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Select Movies"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp" />
+
+        <LinearLayout
+            android:id="@+id/checkBoxes_movies_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+
+        <Button
+            android:id="@+id/button_add_cinema"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add Cinema" />
+
+        <Button
+            android:id="@+id/button_return_main_from_cinema_add"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Return to Main Page" />
+
+        <Button
+            android:id="@+id/button_back_previous_from_cinema_add"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Back to Previous Page" />
+
+    </LinearLayout>
+
+</ScrollView>
+

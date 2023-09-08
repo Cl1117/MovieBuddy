@@ -8,6 +8,35 @@
     <ListView
         android:id="@+id/listView_cinemas"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:divider="@android:color/darker_gray"
+        android:dividerHeight="0.5dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tap a cinema to edit record"
+        android:textAlignment="center"
+        android:paddingTop="10dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Hold to delete cinema record."
+        android:textAlignment="center"
+        android:paddingBottom="10dp" />
+
+    <Button
+        android:id="@+id/button_return_main_from_cinema_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Return to Main Page" />
+
+    <Button
+        android:id="@+id/button_back_previous_from_cinema_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Back to Previous Page" />
 
 </LinearLayout>

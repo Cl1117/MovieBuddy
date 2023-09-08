@@ -32,14 +32,6 @@ public class CinemaManagementFragment extends Fragment {
             transaction.commit();
         });
 
-        // Setup button to edit a cinema record
-        Button editCinemaButton = view.findViewById(R.id.btn_edit_cinema);
-        editCinemaButton.setOnClickListener(v -> {
-            FragmentTransaction transaction = getFragmentManager().beginTransaction();
-            transaction.replace(R.id.fragment_container, new EditCinemaFragment());
-            transaction.addToBackStack(null);
-            transaction.commit();
-        });
 
         return view;
     }
